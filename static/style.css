@@ -50,3 +50,72 @@ input, select {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+/* Blood Request Table */
+
+.donor-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background: white;
+}
+
+.donor-table th {
+    background-color: #c62828;
+    color: white;
+    padding: 14px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.donor-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #333;
+}
+
+.donor-table tr:nth-child(even) {
+    background-color: #fceaea;
+}
+
+.donor-table tr:hover {
+    background-color: #ffe0e0;
+}
+
+/* Donor Search Table - Red Theme */
+
+.donor-table,
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background-color: white;
+}
+
+.donor-table th,
+table th {
+    background-color: #c62828;
+    color: white;
+    padding: 14px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.donor-table td,
+table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #333;
+}
+
+.donor-table tr:nth-child(even),
+table tr:nth-child(even) {
+    background-color: #fceaea;
+}
+
+.donor-table tr:hover,
+table tr:hover {
+    background-color: #ffe0e0;
+}

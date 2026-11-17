@@ -121,6 +121,20 @@ def view_donors():
 
     return render_template("donors.html", donors=donors)
 
+@app.route("/view-requests")
+def view_requests():
+    conn = sqlite3.connect("bloodbridge.db")
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM blood_requests")
+    requests = cursor.fetchall()
+
+    conn.close()
+
+    return render_template("view_requests.html", requests=requests)
+
+
 
 # RUN APPLICATION
 if __name__ == "__main__":
