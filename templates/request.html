@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>🩸 Blood Request Form</h2>
+
+<form method="POST">
+
+    <label>Hospital Name:</label><br>
+    <input type="text" name="hospital_name" required>
+    <br><br>
+
+    <label>Blood Group Needed:</label><br>
+    <select name="blood_group" required>
+        <option value="">Select Blood Group</option>
+        <option>A+</option>
+        <option>A-</option>
+        <option>B+</option>
+        <option>B-</option>
+        <option>O+</option>
+        <option>O-</option>
+        <option>AB+</option>
+        <option>AB-</option>
+    </select>
+    <br><br>
+
+    <label>Units Required:</label><br>
+    <input type="number" name="units" min="1" required>
+    <br><br>
+
+    <label>Location:</label><br>
+    <input type="text" name="location" required>
+    <br><br>
+
+    <label>Contact Number:</label><br>
+    <input type="tel" name="contact" required>
+    <br><br>
+
+    <button type="submit">Submit Blood Request</button>
+
+</form>
+
+{% endblock %}
