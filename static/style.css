@@ -1,57 +1,170 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
+    background: #fff5f5;
     color: #333;
+    min-height: 100vh;
 }
 
-h1 {
-    color: #c62828;
-    text-align: center;
+/* Header */
+
+header {
+    background: #c62828;
+    color: white;
     padding: 20px;
+    text-align: center;
 }
 
-h2, h3 {
-    color: #b71c1c;
+header h1 {
+    margin-bottom: 15px;
 }
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main */
+
+main {
+    min-height: 75vh;
+    padding: 40px 20px;
+}
+
+/* Containers */
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    color: #c62828;
+    margin-bottom: 15px;
+}
+
+/* Hero */
+
+.hero {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+    background: white;
+    padding: 50px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hero h2 {
+    color: #c62828;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Buttons */
 
 a {
-    display: inline-block;
-    background-color: #c62828;
-    color: white;
-    padding: 12px 20px;
-    margin: 8px;
     text-decoration: none;
-    border-radius: 6px;
 }
 
-a:hover {
-    background-color: #8e0000;
+.home-buttons,
+.dashboard-buttons {
+    margin-top: 30px;
+}
+
+.home-buttons a,
+.dashboard-buttons a {
+    display: inline-block;
+    background: #c62828;
+    color: white;
+    padding: 14px 22px;
+    margin: 8px;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.home-buttons a:hover,
+.dashboard-buttons a:hover {
+    background: #8e0000;
+}
+
+/* Forms */
+
+.form-container {
+    max-width: 550px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    color: #c62828;
+    margin-bottom: 25px;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 6px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
 }
 
 button {
-    background-color: #c62828;
+    margin-top: 20px;
+    background: #c62828;
     color: white;
-    padding: 12px 20px;
     border: none;
+    padding: 13px 22px;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 button:hover {
-    background-color: #8e0000;
+    background: #8e0000;
 }
 
-input, select {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Search */
+
+.search-form {
+    background: #fff5f5;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 25px 0;
 }
 
-/* Blood Request Table */
+/* Tables */
 
 .donor-table {
     width: 100%;
@@ -61,7 +174,7 @@ input, select {
 }
 
 .donor-table th {
-    background-color: #c62828;
+    background: #c62828;
     color: white;
     padding: 14px;
     border: 1px solid #ddd;
@@ -72,50 +185,131 @@ input, select {
     padding: 12px;
     border: 1px solid #ddd;
     text-align: center;
-    color: #333;
 }
 
 .donor-table tr:nth-child(even) {
-    background-color: #fceaea;
+    background: #fceaea;
 }
 
 .donor-table tr:hover {
-    background-color: #ffe0e0;
+    background: #ffe0e0;
 }
 
-/* Donor Search Table - Red Theme */
+/* Messages */
 
-.donor-table,
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 25px;
-    background-color: white;
+.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #81c784;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
 }
 
-.donor-table th,
-table th {
-    background-color: #c62828;
+.error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.warning {
+    background: #fff3e0;
+    color: #e65100;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+/* Request summary */
+
+.request-summary {
+    background: #fff5f5;
+    border-left: 5px solid #c62828;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.request-summary p {
+    margin: 8px 0;
+}
+
+/* Feature cards */
+
+.features {
+    max-width: 1000px;
+    margin: 35px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.feature-card {
+    flex: 1 1 220px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card h3 {
+    color: #c62828;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+
+footer {
+    background: #8e0000;
     color: white;
-    padding: 14px;
-    border: 1px solid #ddd;
     text-align: center;
+    padding: 15px;
 }
 
-.donor-table td,
-table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
+/* Mobile */
+
+@media (max-width: 700px) {
+    .container {
+        padding: 20px;
+    }
+
+    .donor-table {
+        font-size: 13px;
+    }
+
+    .donor-table th,
+    .donor-table td {
+        padding: 8px;
+    }
+
+    .dashboard-buttons a {
+        display: block;
+        text-align: center;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px;
+    }
+}
+
+/* Clickable Home Feature Cards */
+
+.feature-card {
+    display: block;
+    text-decoration: none;
     color: #333;
+    transition: 0.2s;
+    cursor: pointer;
 }
 
-.donor-table tr:nth-child(even),
-table tr:nth-child(even) {
-    background-color: #fceaea;
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(198, 40, 40, 0.25);
 }
 
-.donor-table tr:hover,
-table tr:hover {
-    background-color: #ffe0e0;
+.feature-card h3 {
+    color: #c62828;
 }

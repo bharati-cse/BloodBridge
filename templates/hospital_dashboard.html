@@ -1,24 +1,39 @@
-
 {% extends "base.html" %}
 
 {% block content %}
 
-<h2>🏥 Hospital Dashboard</h2>
+<div class="container">
 
-<div class="dashboard-card">
+    <h2>🏥 Hospital Dashboard</h2>
 
-    <h3>Welcome, Hospital!</h3>
+    <p>
+        Manage blood requests and find registered blood donors.
+    </p>
 
-    <p>Manage emergency blood requests here.</p>
+    <div class="dashboard-buttons">
 
-    <h3>Hospital Actions</h3>
+        <a href="/blood-request">
+            Create Blood Request
+        </a>
 
-    <a href="/blood-request">Create Blood Request</a>
-    <a href="/view-donors">View Registered Donors</a>
-    <a href="/view-donors">Search Donors by Blood Group</a>
-    <a href="{{ url_for('view_requests') }}">
-    View Blood Requests
-</a>
+
+        <a href="/view-donors">
+            Search Donors by Blood Group
+        </a>
+
+        <a href="/view-requests">
+            View Blood Requests
+        </a>
+       <a href="/automatic-matching">
+    🤖 Automatic Matching
+</a> 
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
 </div>
 
 {% endblock %}

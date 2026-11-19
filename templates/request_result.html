@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="success">
+        Blood request submitted successfully!
+    </div>
+
+    <h2>🩸 Matching Blood Donors</h2>
+
+    <div class="request-summary">
+
+        <p>
+            <strong>Hospital:</strong>
+            {{ hospital_name }}
+        </p>
+
+        <p>
+            <strong>Blood Group:</strong>
+            {{ blood_group }}
+        </p>
+
+        <p>
+            <strong>Units Required:</strong>
+            {{ units }}
+        </p>
+
+        <p>
+            <strong>Location:</strong>
+            {{ location }}
+        </p>
+
+        <p>
+            <strong>Contact:</strong>
+            {{ contact }}
+        </p>
+
+    </div>
+
+    {% if matching_donors %}
+
+    <h3>Available Matching Donors</h3>
+
+    <table class="donor-table">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Blood Group</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for donor in matching_donors %}
+
+            <tr>
+
+                <td>{{ donor['id'] }}</td>
+
+                <td>{{ donor['name'] }}</td>
+
+                <td>{{ donor['blood_group'] }}</td>
+
+                <td>{{ donor['location'] }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="warning">
+        No matching donors found for {{ blood_group }}.
+    </div>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/hospital-dashboard">
+        Back to Hospital Dashboard
+    </a>
+
+</div>
+
+{% endblock %}

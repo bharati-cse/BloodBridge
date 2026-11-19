@@ -1,27 +1,39 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>BloodBridge</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
-<h1>❤️ BloodBridge</h1>
+<header>
+    <h1>🩸 BloodBridge</h1>
 
-<nav>
-    <a href="/">Home</a>
-    <a href="/donor-register">Donor Register</a>
-    <a href="/donor-login">Donor Login</a>
-    <a href="/hospital-login">Hospital Login</a>
-    <a href="/blood-request">Blood Request</a>
-    <a href="/hospital-dashboard">Hospital Dashboard</a>
-</nav>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/donor-register">Register Donor</a>
+        <a href="/hospital-login">Hospital Login</a>
+    </nav>
+</header>
 
-<hr>
+<main>
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+<footer>
+    <p>© 2026 BloodBridge | Connecting Blood Donors with Hospitals</p>
+</footer>
 
 </body>
+
 </html>

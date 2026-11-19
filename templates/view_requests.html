@@ -1,14 +1,17 @@
-
 {% extends "base.html" %}
 
 {% block content %}
 
 <div class="container">
-    <h2>Blood Request Details</h2>
+
+    <h2>🩸 Blood Request Details</h2>
 
     {% if requests %}
+
     <table class="donor-table">
+
         <thead>
+
             <tr>
                 <th>ID</th>
                 <th>Hospital Name</th>
@@ -16,26 +19,67 @@
                 <th>Units Required</th>
                 <th>Location</th>
                 <th>Contact Number</th>
+                <th>Action</th>
             </tr>
+
         </thead>
 
         <tbody>
+
             {% for request in requests %}
+
             <tr>
+
                 <td>{{ request['id'] }}</td>
+
                 <td>{{ request['hospital_name'] }}</td>
+
                 <td>{{ request['blood_group'] }}</td>
+
                 <td>{{ request['units'] }}</td>
+
                 <td>{{ request['location'] }}</td>
+
                 <td>{{ request['contact'] }}</td>
+
+                <td>
+
+                    <form
+                        method="POST"
+                        action="/complete-request/{{ request['id'] }}"
+                        onsubmit="return confirm('Mark this blood request as completed?');"
+                    >
+
+                        <button type="submit">
+                            ✅ Complete Request
+                        </button>
+
+                    </form>
+
+                </td>
+
             </tr>
+
             {% endfor %}
+
         </tbody>
+
     </table>
 
     {% else %}
-        <p>No blood requests found.</p>
+
+    <div class="warning">
+        No active blood requests found.
+    </div>
+
     {% endif %}
+
+    <br>
+
+    <a href="/hospital-dashboard">
+        Back to Hospital Dashboard
+    </a>
+
 </div>
 
 {% endblock %}

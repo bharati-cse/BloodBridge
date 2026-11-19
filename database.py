@@ -1,10 +1,16 @@
 import sqlite3
 
-def create_database():
+
+def get_connection():
     conn = sqlite3.connect("bloodbridge.db")
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+def initialize_database():
+    conn = get_connection()
     cursor = conn.cursor()
 
-    # Donor table
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS donors (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,7 +20,6 @@ def create_database():
         )
     """)
 
-    # Blood request table
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS blood_requests (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,7 +33,3 @@ def create_database():
 
     conn.commit()
     conn.close()
-
-if __name__ == "__main__":
-    create_database()
-    print("Database created successfully!")
