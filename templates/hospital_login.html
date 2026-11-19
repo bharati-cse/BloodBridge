@@ -1,46 +1,29 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<div class="form-container">
+<section class="panel narrow">
+    <h2>Hospital Login (Demo)</h2>
 
-    <h2>🏥 Hospital Login</h2>
-
-    {% if error %}
-        <div class="error">
-            {{ error }}
-        </div>
-    {% endif %}
-
-    <form method="POST">
-
-        <label>Username</label>
-
-        <input
-            type="text"
-            name="username"
-            required
-        >
-
-        <label>Password</label>
-
-        <input
-            type="password"
-            name="password"
-            required
-        >
-
-        <button type="submit">
-            Login
-        </button>
-
-    </form>
-
-    <p class="demo-login">
-        Demo Login: <strong>hospital</strong> /
-        <strong>1234</strong>
+    <p>
+        Demo credentials:
+        <code>hospital</code> / <code>1234</code>
     </p>
 
-</div>
+    <form method="post">
+
+        <label>
+            Username
+            <input name="username" required>
+        </label>
+
+        <label>
+            Password
+            <input type="password" name="password" required>
+        </label>
+
+        <button type="submit">Login</button>
+
+    </form>
+</section>
 
 {% endblock %}

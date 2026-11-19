@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="panel">
+    <h2>Intercity Transfer Tracking (Simulation)</h2>
+
+    <p class="notice">
+        This is a student-project workflow simulation.
+        It does not arrange, authorize or validate real blood transport.
+    </p>
+
+    <h3>Create demo tracking record</h3>
+
+    <form method="post" action="/transfer/create">
+
+        <label>
+            Request
+
+            <select name="request_id" required>
+
+                {% for r in requests %}
+                <option value="{{ r['id'] }}">
+                    #{{ r['id'] }}
+                    · {{ r['blood_group'] }}
+                    · {{ r['location'] }}
+                    · {{ r['hospital_name'] }}
+                </option>
+                {% endfor %}
+
+            </select>
+        </label>
+
+        <label>
+            Optional donor record
+
+            <select name="donor_id">
+                <option value="">None</option>
+
+                {% for d in donors %}
+                <option value="{{ d['id'] }}">
+                    #{{ d['id'] }}
+                    · {{ d['name'] }}
+                    · {{ d['blood_group'] }}
+                    · {{ d['location'] }}
+                </option>
+                {% endfor %}
+
+            </select>
+        </label>
+
+        <label>
+            Origin city
+            <input name="origin_city" required>
+        </label>
+
+        <label>
+            Destination city
+            <input name="destination_city" required>
+        </label>
+
+        <button type="submit">Create tracking record</button>
+
+    </form>
+
+    <h3>Tracking records</h3>
+
+    {% if transfers %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Request</th>
+                <th>Group</th>
+                <th>Route</th>
+                <th>Status</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for t in transfers %}
+
+            <tr>
+
+                <td>{{ t['id'] }}</td>
+
+                <td>
+                    #{{ t['request_id'] }}
+                    · {{ t['hospital_name'] }}
+                </td>
+
+                <td>{{ t['blood_group'] }}</td>
+
+                <td>
+                    {{ t['origin_city'] }}
+                    → {{ t['destination_city'] }}
+                </td>
+
+                <td>{{ t['status'] }}</td>
+
+                <td>
+
+                    <form method="post"
+                          action="/transfer/{{ t['id'] }}/status">
+
+                        <select name="status">
+
+                            {% for s in [
+                                "Coordination started",
+                                "Donation centre confirmation pending",
+                                "Dispatch status recorded",
+                                "Receipt confirmed"
+                            ] %}
+
+                            <option
+                                {% if t['status'] == s %}selected{% endif %}>
+                                {{ s }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                        <button type="submit">Update</button>
+
+                    </form>
+
+                    {% if t['status'] == "Receipt confirmed" %}
+
+                    <form method="post"
+                          action="/transfer/{{ t['id'] }}/close">
+
+                        <button type="submit">
+                            Close tracking record
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    {% else %}
+
+        <p>No tracking records yet.</p>
+
+    {% endif %}
+
+    <p>
+        <a href="/hospital-dashboard">Dashboard</a>
+    </p>
+
+</section>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-name: BloodBridge CI
+name: BloodBridge CI CD Pipeline
 
 on:
   push:
@@ -9,10 +9,10 @@ on:
 
 jobs:
   build:
+    name: Continuous Integration
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -32,4 +32,19 @@ jobs:
       - name: Build Docker image
         run: docker build -t bloodbridge .
 
+  deploy:
+    name: Continuous Deployment
+    runs-on: ubuntu-latest
+    needs: build
 
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Deploy BloodBridge to Render
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          test -n "$RENDER_DEPLOY_HOOK"
+          curl --fail --silent --show-error \
+            --request POST \
+            "$RENDER_DEPLOY_HOOK"

@@ -1,72 +1,52 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<div class="form-container">
+<section class="panel">
+    <h2>Create Blood Request</h2>
 
-    <h2>🩸 Blood Request Form</h2>
+    <form method="post">
 
-    <form method="POST">
+        <label>
+            Hospital name
+            <input name="hospital_name" required>
+        </label>
 
-        <label>Hospital Name</label>
+        <label>
+            Blood group
+            <select name="blood_group" required>
+                <option value="">Choose</option>
+                {% for g in ["A+","A-","B+","B-","AB+","AB-","O+","O-"] %}
+                    <option>{{ g }}</option>
+                {% endfor %}
+            </select>
+        </label>
 
-        <input
-            type="text"
-            name="hospital_name"
-            placeholder="Enter hospital name"
-            required
-        >
+        <label>
+            Units required
+            <input type="number" name="units" min="1" required>
+        </label>
 
-        <label>Blood Group Needed</label>
+        <label>
+            City
+            <input name="location" required>
+        </label>
 
-        <select name="blood_group" required>
+        <label>
+            Contact (optional)
+            <input name="contact">
+        </label>
 
-            <option value="">Select Blood Group</option>
+        <label>
+            Request type
+            <select name="request_type" required>
+                <option>Normal</option>
+                <option>Emergency</option>
+            </select>
+        </label>
 
-            <option>A+</option>
-            <option>A-</option>
-            <option>B+</option>
-            <option>B-</option>
-            <option>AB+</option>
-            <option>AB-</option>
-            <option>O+</option>
-            <option>O-</option>
-
-        </select>
-
-        <label>Units Required</label>
-
-        <input
-            type="number"
-            name="units"
-            min="1"
-            required
-        >
-
-        <label>Location</label>
-
-        <input
-            type="text"
-            name="location"
-            placeholder="Hospital location"
-            required
-        >
-
-        <label>Contact Number</label>
-
-        <input
-            type="tel"
-            name="contact"
-            placeholder="Contact number"
-            required
-        >
-
-        <button type="submit">
-            Submit Blood Request
-        </button>
+        <button type="submit">Submit Request</button>
 
     </form>
-
-</div>
+</section>
 
 {% endblock %}

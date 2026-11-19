@@ -2,15 +2,110 @@
 
 {% block content %}
 
-<div class="hero">
+<section class="hero">
 
-    <h2>Welcome to BloodBridge 🩸</h2>
+    <div class="hero-content">
 
-    <p>
-        A simple platform connecting blood donors with hospitals
-        during urgent blood requirements.
-    </p>
+        <span class="hero-tag">
+            <i class="fa-solid fa-heart-pulse"></i>
+            Connecting Lives Through Blood Donation
+        </span>
 
-</div>
+        <h1>
+            Every Drop Counts.
+            <span>Every Life Matters.</span>
+        </h1>
+
+        <p>
+            BloodBridge connects blood donors, hospitals and
+            communities to make finding blood easier and faster.
+        </p>
+
+       
+
+    </div>
+
+    <div class="hero-icon">
+        <i class="fa-solid fa-droplet"></i>
+        <div class="floating-icon">
+            <i class="fa-solid fa-heart"></i>
+        </div>
+    </div>
+
+</section>
+
+<section class="section-heading">
+    <h2>How Can We Help You?</h2>
+    <p>Choose an option to get started.</p>
+</section>
+
+<section class="features">
+
+    <a href="/donor-register" class="feature-card donor-card">
+
+        <div class="feature-icon">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+        </div>
+
+        <h3>Register as Donor</h3>
+
+        <p>
+            Become a blood donor and help save someone's life.
+            Register your blood group and city.
+        </p>
+
+        <span class="card-link">
+            Register Now <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+    <a href="/requirements?kind=Emergency"
+       class="feature-card emergency-card">
+
+        <div class="feature-icon">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+
+        <h3>Emergency Blood Requirement</h3>
+
+        <p>
+            Find urgent blood requirements and help people
+            in emergency situations.
+        </p>
+
+        <span class="card-link">
+            View Emergencies <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+    <a href="/requirements?kind=Normal"
+       class="feature-card normal-card">
+
+        <div class="feature-icon">
+            <i class="fa-solid fa-hospital"></i>
+        </div>
+
+        <h3>Normal Blood Requirement</h3>
+
+        <p>
+            Browse regular blood requirements from hospitals
+            and communities.
+        </p>
+
+        <span class="card-link">
+            View Requirements <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+</section>
+
+<section class="bottom-banner">
+    <i class="fa-solid fa-heart-pulse"></i>
+    <h2>Be someone's reason to smile.</h2>
+    <p>One donation can make a meaningful difference.</p>
+</section>
 
 {% endblock %}

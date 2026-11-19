@@ -1,39 +1,66 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<div class="container">
+<section class="panel">
 
-    <h2>🏥 Hospital Dashboard</h2>
+    <h2><i class="fa-solid fa-hospital"></i> Hospital Dashboard</h2>
 
-    <p>
-        Manage blood requests and find registered blood donors.
-    </p>
+    <div class="stats">
+        <div>
+            <i class="fa-solid fa-clipboard-list"></i>
+            Requests
+            <strong>{{ req_count }}</strong>
+        </div>
 
-    <div class="dashboard-buttons">
+        <div>
+            <i class="fa-solid fa-users"></i>
+            Donor Records
+            <strong>{{ donor_count }}</strong>
+        </div>
 
-        <a href="/blood-request">
+        <div>
+            <i class="fa-solid fa-truck-medical"></i>
+            Transfer Records
+            <strong>{{ transfer_count }}</strong>
+        </div>
+    </div>
+
+    <h3>Quick Actions</h3>
+
+    <div class="tiles dashboard">
+
+        <a class="tile" href="/blood-request">
+            <i class="fa-solid fa-droplet"></i>
             Create Blood Request
         </a>
 
-
-        <a href="/view-donors">
-            Search Donors by Blood Group
+        <a class="tile" href="/view-donors">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Search Donors
         </a>
 
-        <a href="/view-requests">
+        <a class="tile" href="/view-requests">
+            <i class="fa-solid fa-clipboard-list"></i>
             View Blood Requests
         </a>
-       <a href="/automatic-matching">
-    🤖 Automatic Matching
-</a> 
 
-        <a href="/logout">
+        <a class="tile" href="/automatic-matching">
+            <i class="fa-solid fa-robot"></i>
+            Automatic Matching
+        </a>
+
+        <a class="tile" href="/transfers">
+            <i class="fa-solid fa-truck-fast"></i>
+            Intercity Transfer Tracking
+        </a>
+
+        <a class="tile" href="/logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
             Logout
         </a>
 
     </div>
 
-</div>
+</section>
 
 {% endblock %}

@@ -1,85 +1,60 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<div class="container">
-
-    <h2>🩸 Blood Request Details</h2>
+<section class="panel">
+    <h2>Blood Requests</h2>
 
     {% if requests %}
 
-    <table class="donor-table">
-
+    <table>
         <thead>
-
             <tr>
                 <th>ID</th>
-                <th>Hospital Name</th>
-                <th>Blood Group</th>
-                <th>Units Required</th>
-                <th>Location</th>
-                <th>Contact Number</th>
+                <th>Type</th>
+                <th>Hospital</th>
+                <th>Group</th>
+                <th>Units</th>
+                <th>City</th>
+                <th>Contact</th>
                 <th>Action</th>
             </tr>
-
         </thead>
 
         <tbody>
-
-            {% for request in requests %}
-
+            {% for r in requests %}
             <tr>
-
-                <td>{{ request['id'] }}</td>
-
-                <td>{{ request['hospital_name'] }}</td>
-
-                <td>{{ request['blood_group'] }}</td>
-
-                <td>{{ request['units'] }}</td>
-
-                <td>{{ request['location'] }}</td>
-
-                <td>{{ request['contact'] }}</td>
+                <td>{{ r['id'] }}</td>
+                <td>{{ r['request_type'] }}</td>
+                <td>{{ r['hospital_name'] }}</td>
+                <td>{{ r['blood_group'] }}</td>
+                <td>{{ r['units'] }}</td>
+                <td>{{ r['location'] }}</td>
+                <td>{{ r['contact'] }}</td>
 
                 <td>
+                    <form method="post"
+                          action="/complete-request/{{ r['id'] }}"
+                          onsubmit="return confirm('Complete and remove this request?');">
 
-                    <form
-                        method="POST"
-                        action="/complete-request/{{ request['id'] }}"
-                        onsubmit="return confirm('Mark this blood request as completed?');"
-                    >
-
-                        <button type="submit">
-                            ✅ Complete Request
-                        </button>
+                        <button type="submit">Complete</button>
 
                     </form>
-
                 </td>
-
             </tr>
-
             {% endfor %}
-
         </tbody>
-
     </table>
 
     {% else %}
 
-    <div class="warning">
-        No active blood requests found.
-    </div>
+        <p>No active requests.</p>
 
     {% endif %}
 
-    <br>
+    <p>
+        <a href="/hospital-dashboard">Dashboard</a>
+    </p>
 
-    <a href="/hospital-dashboard">
-        Back to Hospital Dashboard
-    </a>
-
-</div>
+</section>
 
 {% endblock %}

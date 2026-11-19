@@ -1,27 +1,37 @@
-
 {% extends "base.html" %}
 
 {% block content %}
 
-<h2>❤️ Donor Dashboard</h2>
+<section class="panel">
 
-<div class="dashboard-card">
+    <h2><i class="fa-solid fa-user"></i> Donor Dashboard</h2>
 
-    <h3>Welcome, Donor!</h3>
+    <div class="dashboard-card">
 
-    <p>Thank you for helping save lives.</p>
+        <h3>Welcome, Donor!</h3>
 
-    <h3>Donor Information</h3>
+        <p>Thank you for helping save lives.</p>
 
-    <p>Blood Group: Not Updated</p>
-    <p>Location: Not Updated</p>
-    <p>Availability: Available</p>
+        <h3>Donor Information</h3>
 
-    <h3>Quick Actions</h3>
+        <p><i class="fa-solid fa-droplet"></i> Blood Group: Not Updated</p>
+        <p><i class="fa-solid fa-location-dot"></i> Location: Not Updated</p>
+        <p><i class="fa-solid fa-circle-check"></i> Availability: Available</p>
 
-    <a href="/donor-register">Register as Donor</a>
-    <a href="/view-donors">View Donors</a>
+        <h3>Quick Actions</h3>
 
-</div>
+        <a href="/donor-register" class="primary-btn">
+            <i class="fa-solid fa-user-plus"></i>
+            Register as Donor
+        </a>
+
+        <a href="/view-donors" class="secondary-btn">
+            <i class="fa-solid fa-users"></i>
+            View Donors
+        </a>
+
+    </div>
+
+</section>
 
 {% endblock %}

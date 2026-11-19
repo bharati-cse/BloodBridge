@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="panel">
+    <h2>Blood Requirements</h2>
+
+    <form method="get" class="filters">
+
+        <label>
+            City
+            <input name="city" value="{{ city }}" placeholder="Enter city">
+        </label>
+
+        <label>
+            Type
+            <select name="kind">
+
+                <option value="all"
+                    {% if kind == "all" %}selected{% endif %}>
+                    All
+                </option>
+
+                <option value="Emergency"
+                    {% if kind == "Emergency" %}selected{% endif %}>
+                    Emergency
+                </option>
+
+                <option value="Normal"
+                    {% if kind == "Normal" %}selected{% endif %}>
+                    Normal
+                </option>
+
+            </select>
+        </label>
+
+        <button type="submit">Search</button>
+
+    </form>
+
+    {% if requests %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Blood group</th>
+                <th>Units</th>
+                <th>City</th>
+                <th>Hospital</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for r in requests %}
+            <tr>
+                <td>
+                    <span class="tag {{ r['request_type']|lower }}">
+                        {{ r['request_type'] }}
+                    </span>
+                </td>
+
+                <td>{{ r['blood_group'] }}</td>
+                <td>{{ r['units'] }}</td>
+                <td>{{ r['location'] }}</td>
+                <td>{{ r['hospital_name'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+
+        <p>No matching requests.</p>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

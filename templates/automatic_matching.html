@@ -1,202 +1,100 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<div class="container">
-
-    <h2>🤖 Automatic Blood Matching</h2>
+<section class="panel">
+    <h2>Automatic Matching</h2>
 
     <p>
-        Blood group is used for matching.
-        Same-city donors are shown first, followed by donors
-        from other cities.
+        Demo matching uses exact blood-group text and city prioritization.
+        It does not determine medical compatibility or donor eligibility.
     </p>
 
+    {% for item in matches %}
 
-    {% if matches %}
-
-        {% for item in matches %}
-
-        <!-- BLOOD REQUEST -->
-
-        <div class="request-summary">
-
-            <h3>
-                🏥 {{ item["request"]["hospital_name"] }}
-            </h3>
-
-            <p>
-                <strong>Blood Group Required:</strong>
-                {{ item["request"]["blood_group"] }}
-            </p>
-
-            <p>
-                <strong>Hospital City:</strong>
-                {{ item["request"]["location"] }}
-            </p>
-
-            <p>
-                <strong>Units Required:</strong>
-                {{ item["request"]["units"] }}
-            </p>
-
-        </div>
-
-
-        <!-- PRIORITY 1 -->
+    <section class="panel inset">
 
         <h3>
-            🥇 Priority 1 — Same City + Same Blood Group
+            Request #{{ item['request']['id'] }}
+            · {{ item['request']['blood_group'] }}
+            · {{ item['request']['location'] }}
         </h3>
 
-        {% if item["priority_1"] %}
+        <h4>Priority 1 — Same city</h4>
 
-        <table class="donor-table">
+        {% if item['priority_1'] %}
 
+        <table>
             <thead>
-
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Blood Group</th>
+                    <th>Group</th>
                     <th>City</th>
-                    <th>Match</th>
                 </tr>
-
             </thead>
 
             <tbody>
-
-                {% for donor in item["priority_1"] %}
-
+                {% for d in item['priority_1'] %}
                 <tr>
-
-                    <td>
-                        {{ donor["id"] }}
-                    </td>
-
-                    <td>
-                        {{ donor["name"] }}
-                    </td>
-
-                    <td>
-                        {{ donor["blood_group"] }}
-                    </td>
-
-                    <td>
-                        {{ donor["location"] }}
-                    </td>
-
-                    <td>
-                        🟢 Same City + Same Blood Group
-                    </td>
-
+                    <td>{{ d['id'] }}</td>
+                    <td>{{ d['name'] }}</td>
+                    <td>{{ d['blood_group'] }}</td>
+                    <td>{{ d['location'] }}</td>
                 </tr>
-
                 {% endfor %}
-
             </tbody>
-
         </table>
 
         {% else %}
 
-        <div class="warning">
-            No same-city donor found.
-        </div>
+            <p>No same-city records.</p>
 
         {% endif %}
 
+        <h4>Priority 2 — Other cities</h4>
 
-        <br>
+        {% if item['priority_2'] %}
 
-
-        <!-- PRIORITY 2 -->
-
-        <h3>
-            🥈 Priority 2 — Different City + Same Blood Group
-        </h3>
-
-        {% if item["priority_2"] %}
-
-        <table class="donor-table">
-
+        <table>
             <thead>
-
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Blood Group</th>
+                    <th>Group</th>
                     <th>City</th>
-                    <th>Match</th>
                 </tr>
-
             </thead>
 
             <tbody>
-
-                {% for donor in item["priority_2"] %}
-
+                {% for d in item['priority_2'] %}
                 <tr>
-
-                    <td>
-                        {{ donor["id"] }}
-                    </td>
-
-                    <td>
-                        {{ donor["name"] }}
-                    </td>
-
-                    <td>
-                        {{ donor["blood_group"] }}
-                    </td>
-
-                    <td>
-                        {{ donor["location"] }}
-                    </td>
-
-                    <td>
-                        🟡 Same Blood Group + Different City
-                    </td>
-
+                    <td>{{ d['id'] }}</td>
+                    <td>{{ d['name'] }}</td>
+                    <td>{{ d['blood_group'] }}</td>
+                    <td>{{ d['location'] }}</td>
                 </tr>
-
                 {% endfor %}
-
             </tbody>
-
         </table>
 
         {% else %}
 
-        <div class="warning">
-            No matching donor from another city.
-        </div>
+            <p>No other-city records.</p>
 
         {% endif %}
 
-
-        <br>
-        <hr>
-        <br>
-
-        {% endfor %}
+    </section>
 
     {% else %}
 
-        <div class="warning">
-            No blood requests available.
-        </div>
+        <p>No requests.</p>
 
-    {% endif %}
+    {% endfor %}
 
+    <p>
+        <a href="/hospital-dashboard">Dashboard</a>
+    </p>
 
-    <br>
-
-    <a href="/hospital-dashboard">
-        Back to Hospital Dashboard
-    </a>
-
-</div>
+</section>
 
 {% endblock %}
